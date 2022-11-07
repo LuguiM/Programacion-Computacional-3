@@ -18,6 +18,6 @@ class servidorBasico(SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(data.encode())
     
-    print("Iniciando el servidor... en el puerto 3000")
-    server = HTTPServer(('localhost', 3004), servidorBasico)
-    server.server_forever()
+print("Iniciando el servidor... en el puerto 3004")
+server = HTTPServer(('localhost', 3004), servidorBasico)
+server.serve_forever()

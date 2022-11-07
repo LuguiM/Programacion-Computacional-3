@@ -40,7 +40,7 @@ if args.imagen:
     imagenQR=args.imagen
 else:
     name = input("Ingrese el nombre con el que quiera guardar la imagen: ")
-    imagenQR = os.path.dirname(os.path.abspath(__file__)) + '\ ' + name + '.png'
+    imagenQR = os.path.dirname(os.path.abspath(__file__)) + '\\' + name + '.png' #"C:\Program Files\Downloand" os.path.abspath(__file__)
 
 #Aplicamos el valor al objeto QR
 qr.add_data(valorQR)
