@@ -63,3 +63,4 @@ elif tipoQR == 'CUADRADO_GRANDE':
 img = qr.make_image(image_factory=StyledPilImage, module_drawer=tipoQRC)
 f = open(imagenQR, "wb")
 img.save(f)
+
