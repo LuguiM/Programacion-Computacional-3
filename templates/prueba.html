@@ -8,32 +8,40 @@
     
 </head>
 <body>
-    <form action="{{url_for('predecir')}}" method="post" name="#qr" >
+    {%extends "inicio.html"%}
+    {%block title%}PAGINA PRINCIPAL {%endblock%}
+    {%block content%}
+    <form action="{{url_for('creacionQR')}}" method="post" name="#qr" >
 
         <input type="text" id="txtdato" name="txtdato" required placeholder="Tipo de dato">
-        <input type="text" id="txttipo" name="txttipo" required placeholder="Tipo de qr">
         <input type="text" id="txtname" name="txtname" required placeholder="Nombre del qr">
         <select name="tipoQr">
 
-            <option>CIRCULO</option>
+            <option value="CIRCULO">CIRCULO</option>
       
-            <option>CUADRADO</option>
+            <option value="CUADRADO">CUADRADO</option>
       
-            <option>BARRA_VERTICAL</option>
+            <option value="BARRA_VERTICAL">BARRA_VERTICAL</option>
       
-            <option>BARRA_HORIZONTAL</option>
+            <option value="BARRA_HORIZONTAL">BARRA_HORIZONTAL</option>
       
-            <option>REDONDEADO</option>
+            <option value="REDONDEADO">REDONDEADO</option>
 
-            <option>CUADRADO_GRANDE</option>
+            <option value="CUADRADO_GRANDE">CUADRADO_GRANDE</option>
       
           </select>
         <input type="submit" class="btn btn-primay btn-block btn-large" value="Crear QR">
     <br>
+    <p>{{prediccion_texto}}</p>
+    <br>
     
     </form>
+    
+   <form action="{{url_for('show_signup_form')}}" method="post">
+    <button  name="pri" href="registro.html">login</button>
+   </form>
 
-    {{prediccion_texto}}
+   {%endblock%}
     
 </body>
 </html>
