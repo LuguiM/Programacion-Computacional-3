@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PruebaCreacionQr</title>
+    
+</head>
+<body>
+    <form action="{{url_for('predecir')}}" method="post" name="#qr" >
+
+        <input type="text" id="txtdato" name="txtdato" required placeholder="Tipo de dato">
+        <input type="text" id="txttipo" name="txttipo" required placeholder="Tipo de qr">
+        <input type="text" id="txtname" name="txtname" required placeholder="Nombre del qr">
+        <select name="tipoQr">
+
+            <option>CIRCULO</option>
+      
+            <option>CUADRADO</option>
+      
+            <option>BARRA_VERTICAL</option>
+      
+            <option>BARRA_HORIZONTAL</option>
+      
+            <option>REDONDEADO</option>
+
+            <option>CUADRADO_GRANDE</option>
+      
+          </select>
+        <input type="submit" class="btn btn-primay btn-block btn-large" value="Crear QR">
+    <br>
+    
+    </form>
+
+    {{prediccion_texto}}
+    
+</body>
+</html>
