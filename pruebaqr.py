@@ -13,13 +13,17 @@ import os
 #SERvidor
 app = Flask("my_first_website")
 
-@app.route("/signup", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def show_signup_form():
-    return render_template("login.html")
+    return render_template("base.html")
 
-@app.route("/login")
+@app.route("/signup", methods=["GET", "POST"])
 def iniciarSesion():
     return render_template("login.html")
+
+@app.route("/registro", methods=["GET", "POST"])
+def registro():
+    return render_template("registro.html")
 
 
 @app.route("/creacionQR", methods=['GET','POST'])
@@ -84,9 +88,9 @@ def creacionQR():
         f = open(imagenQR, "wb")
         img.save(f)
         
-        return render_template("prueba.html", predicicon_texto=f'El qr ha sido creado con exito..')
+        return render_template("prueba.html")
     else:
-        return render_template("prueba.html", predicicon_texto=f'El qr ha sido no ha sido creado con exito..')
+        return render_template("prueba.html")
 
 
 if __name__ == "__main__":

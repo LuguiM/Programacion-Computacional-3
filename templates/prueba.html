@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PruebaCreacionQr</title>
-    
-</head>
-<body>
-    {%extends "inicio.html"%}
+    {%extends "base.html"%}
     {%block title%}PAGINA PRINCIPAL {%endblock%}
     {%block content%}
     <form action="{{url_for('creacionQR')}}" method="post" name="#qr" >
@@ -37,11 +27,4 @@
     
     </form>
     
-   <form action="{{url_for('show_signup_form')}}" method="post">
-    <button  name="pri" href="registro.html">login</button>
-   </form>
-
    {%endblock%}
-    
-</body>
-</html>
