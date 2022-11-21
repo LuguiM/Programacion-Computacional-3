@@ -17,7 +17,7 @@
 	/*Estilos para el encabezado*/
 	.header{
 	height: 100vh;
-    background-image: linear-gradient(to top, rgba(250, 208, 196, 0.5) 0%, rgba(255, 209, 255, 0.5) 100%), url(../grupo4/img/woman.jpg);
+    background-image: linear-gradient(to top, rgba(250, 208, 196, 0.5) 0%, rgba(255, 209, 255, 0.5) 100%), url(../css/img/woman.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
