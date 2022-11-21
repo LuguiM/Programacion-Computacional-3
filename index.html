@@ -1,35 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INICIO</title>
-    <link rel="stylesheet" href="estilos.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	<meta charset="UTF-8">
+	<title>QR</title>
+	<link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-    <header class="header" id="inicio">
-        <img src="hamburguesa.svg" alt="hamburguer">
-        <nav class="menu-navegacion">
-            <a href="#Inicio">Inicio</a>
-            <a href="registro.html">Registrarse</a>
-            <a href="login.html">Ingresar</a>
-        </nav>
-        <div class="contenedor head">
-            <h1 class="titulo">Realiza con mayor facilidad</h1>
-            <p class="copy">Crea o convierte tu codigo QR</p>
-        </div>
-    </header>
-    <i class='bx bxl-facebook-square'></i> 
-    <i class='bx bxl-instagram' ></i>
-    <i class='bx bxl-twitter' ></i>
-    <script src="menu.js"></script>
-    <script src="lightbox.js"></script>
-    <script>
-        $.post("http://localhost:3004/",function(data){
-            $("").html(data);
-        });
-    </script>
+	
+	<header class="header">
+		
+		<div class="container">
+		<div class="btn-menu">
+			<label for="btn-menu">☰</label>
+		</div>
+			<div class="logo">
+				<h1>QR</h1>
+			</div>
+			<nav class="menu">
+				<a href="#">Inicio</a>
+				<a href="#">Nosotros</a>
+				<a href="#">Contacto</a>
+			</nav>
+		</div>
+	</header>
+	<div class="capa"></div>
+<!--	--------------->
+<input type="checkbox" id="btn-menu">
+
+<div class="container-menu">
+	<div class="cont-menu">
+		<nav>
+			
+			<a href="">Servicios</a>
+			<a href="registro.html">Registrarse</a>
+			<a href="ingresar.html">ingresar</a>
+			<a href="generador.html">usar</a>
+		    
+		</nav>
+		<label for="btn-menu">✖️</label>
+	</div>
+</div>
 </body>
 </html>
