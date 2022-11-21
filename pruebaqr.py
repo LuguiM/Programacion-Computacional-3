@@ -7,7 +7,7 @@ import argparse
 import os
 
 
-#Preparamos el formato para el codigo QR
+
 
 
 #SERvidor
@@ -15,7 +15,7 @@ app = Flask("my_first_website")
 
 @app.route("/", methods=["GET", "POST"])
 def show_signup_form():
-    return render_template("base.html")
+    return render_template("index.html")
 
 @app.route("/signup", methods=["GET", "POST"])
 def iniciarSesion():
@@ -25,6 +25,9 @@ def iniciarSesion():
 def registro():
     return render_template("registro.html")
 
+@app.route("/generador", methods=["GET", "POST"])
+def generador():
+    return render_template("generador.html")
 
 @app.route("/creacionQR", methods=['GET','POST'])
 def creacionQR():

@@ -5,25 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{%block title%}{%endblock%}</title>
-    <link rel="stylesheet" href={{url_for('static', filename='css/estilos.css')}}>
+    <link rel="stylesheet" href={{url_for('static', filename='css/estilos2.css')}}>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <header class="header" id="inicio">
-        <img src="img/hamburguesa.svg" alt="hamburguer">
-        <nav class="menu-navegacion">
-            <a href="{{url_for('creacionQR')}}">Inicio</a>
-            <a href="{{url_for('registro')}}">Registrarse</a>
-            <a href="{{url_for('iniciarSesion')}}">Ingresar</a>
-        </nav>
-        
-    </header>
-    {%block content %}{%endblock%}
-    <i class='bx bxl-facebook-square'></i> 
-    <i class='bx bxl-instagram' ></i>
-    <i class='bx bxl-twitter' ></i>
-    <script src="menu.js"></script>
-    <script src="lightbox.js"></script>
     
+    
+	<header class="header">
+		
+		<div class="container">
+		<div class="btn-menu">
+			<label for="btn-menu">☰</label>
+		</div>
+			<div class="logo">
+				<h1>QR</h1>
+			</div>
+			<nav class="menu">
+				<a href="#">Inicio</a>
+				<a href="#">Nosotros</a>
+				<a href="#">Contacto</a>
+			</nav>
+		</div>
+	</header>
+	<div class="capa"></div>
+<!--	--------------->
+<input type="checkbox" id="btn-menu">
+
+<div class="container-menu">
+	<div class="cont-menu">
+		<nav>
+			
+			<a href="">Servicios</a>
+			<a href="{{url_for('registro')}}">Registrarse</a>
+			<a href="{{url_for('iniciarSesion')}}">ingresar</a>
+			<a href="{{url_for('generador')}}">usar</a>
+		    
+		</nav>
+		<label for="btn-menu">✖️</label>
+	</div>
+</div>
+{%block content %}{%endblock%}
 </body>
 </html>
