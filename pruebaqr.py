@@ -1,4 +1,5 @@
-from flask import Flask,render_template, request
+from flask import Flask,render_template, request, redirect, url_for, session
+from flask_mysqldb import MySQL, MySQLdb
 
 import qrcode
 from qrcode.image.styledpil import StyledPilImage
@@ -13,17 +14,84 @@ import os
 #SERvidor
 app = Flask("my_first_website")
 
+#CONEXION BASE DE DATOS
+app.config['MYSQL_HOST'] = '127.0.0.1'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'qr_world'
+app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+mysql = MySQL(app)
+
 @app.route("/", methods=["GET", "POST"])
 def show_signup_form():
     return render_template("index.html")
 
-@app.route("/signup", methods=["GET", "POST"])
-def iniciarSesion():
-    return render_template("login.html")
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    
+    notificacion = Notify()
+    
+    if request.method == 'POST':
+        usuario = request.form['usuario']
+        pasword = request.form['passwordd']
+        
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM login_tradicional WHERE usuario=%s", (usuario))
+        user = cur.fetchone()
+        cur.close()
+        
+        if len(user)>0:
+            if password == user["password"]:
+                session['name'] = user['name']
+                session['password'] = user['password']
+                
+            else:
+                notificacion.title = "error de Acceso"
+                notificacion.message = "Usuario o Contraseña no Valida"
+                notificacion.send()
+                return render_template("login.html")
+        else:
+            notificacion.title = "error de Acceso"
+            notificacion.message = "Usuario o Contraseña no Valida"
+            notificacion.send()
+            return render_template("login.html")
+    else:
+        return render_template("login.html")
 
 @app.route("/registro", methods=["GET", "POST"])
 def registro():
-    return render_template("registro.html")
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM registro")
+    tipo = cur.fetchall()
+    
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM login_tradicional")
+    tipo = cur.fetchall()
+    
+    cur.close()
+    
+    notificacion = Notify()
+    
+    if request.method == 'GET':
+        return render_template("registro.html")
+    else:
+        name = request.form['name']
+        apellido = request.form['apellido']
+        email = request.form['email']
+        usuario = request.form['usuario']
+        password = request.form['password']
+        password2 = request.form['password2']
+        
+        cur = mysql.connection.cursor()
+        cur.execute("INSERT INTO registro(nombre, apellido, correo) VALUES(%s,%s,%s,%s)", (name, apellido, email))
+        cur.execute("INSERT INTO login_tradicional(usuario, contrasena, password2 VALUES(%s,%s,%s)", (usuario, password, password2))
+        mysql.connection.commit()
+        notificacion.title = "Registro Exitoso"
+        notificacion.message = "Ya te encuentras registrado en QR_WORLD, for favor inicia sesion y empieza a crear."
+        notificacion.send()
+        return redirect(url_for('login'))
+    
+    
 
 @app.route("/generador", methods=["GET", "POST"])
 def generador():
@@ -97,4 +165,5 @@ def creacionQR():
 
 
 if __name__ == "__main__":
+    app.secret_key = "llaveSecreta"
     app.run(debug=True,host='localhost', port='5000')
