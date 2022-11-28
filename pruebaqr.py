@@ -95,7 +95,7 @@ def registro():
 
 @app.route("/generador", methods=["GET", "POST"])
 def generador():
-    return render_template("generador.html")
+    return render_template("ppp.html")
 
 @app.route("/creacionQR", methods=['GET','POST'])
 def creacionQR():

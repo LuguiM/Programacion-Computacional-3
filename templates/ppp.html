@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{%block title %} Generador {%endblock%}
+
+{%block content%}
+<link rel="stylesheet" href="{{url_for('static', filename='css/prueba.css')}}" />
+<div class="contenido">
+    <div class="container1">
+        <div class="header1">
+            <h1>Generador</h1>
+            <p>Escriba una url o texto para generar código QR</p>
+        </div>
+        <div class="input-form">
+            <input type="text" class="qr-input" placeholder="Ingrese URL o texto" />
+            <button class="generate-btn">Genera tu codigo QR</button>
+        </div>
+        <div class="qr-code">
+            <img src="images/qrcode.png" class="qr-image" />
+        </div>
+
+        <div>
+            <button class="download-btn">Descarga tu codigo QR</button>
+        </div>
+    </div>
+</div>
+  <script>
+    const container = document.querySelector(".container");
+    const generateBtn = document.querySelector(".generate-btn");
+    const downloadBtn = document.querySelector(".download-btn");
+    const qrInput = document.querySelector(".qr-input");
+    const qrImg = document.querySelector(".qr-image");
+    let downloadResource = {
+      url: "",
+      name: "",
+    };
+
+    generateBtn.onclick = function () {
+      if (qrInput.value.length > 0) {
+        generateBtn.innerText = "Generating QR Code...";
+        const url =
+          "https://api.qrserver.com/v1/create-qr-code/?size=170x170&format=png&download=1&&data=" +
+          qrInput.value;
+        qrImg.src = url;
+        qrImg.onload = function () {
+          container.classList.add("active");
+          generateBtn.innerText = "Genera tu codigo QR";
+          downloadResource = {
+            url,
+            name: String(qrInput.value).split(".")[0] ?? qrInput.value,
+          };
+        };
+      }
+    };
+
+    downloadBtn.onclick = function () {
+      const { url, name } = downloadResource;
+      console.log(downloadResource);
+      if (!url || !name) return;
+
+      const fileName = name;
+      var el = document.createElement("a");
+      el.setAttribute("href", url);
+      el.setAttribute("download", fileName);
+      document.body.appendChild(el);
+      el.click();
+      el.remove();
+    };
+  </script>
+
+{%endblock%}

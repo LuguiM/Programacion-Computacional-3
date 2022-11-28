@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{%block title%} {%endblock%}</title>
-    <link rel="stylesheet" href={{url_for('static', filename='css/estilos2.css')}}>
+    <link rel="stylesheet" href={{url_for('static', filename='css/estiloBase.css')}}>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -37,7 +37,7 @@
 			
 			<a href="">Servicios</a>
 			<a href="{{url_for('registro')}}">Registrarse</a>
-			<a href="{{url_for('iniciarSesion')}}">ingresar</a>
+			<a href="{{url_for('login')}}">ingresar</a>
 			<a href="{{url_for('generador')}}">usar</a>
 		    
 		</nav>
