@@ -26,6 +26,10 @@ mysql = MySQL(app)
 def show_signup_form():
     return render_template("index.html")
 
+@app.route("/loginFacial")
+def shows():
+    return render_template("login_facial.html")
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     
@@ -134,8 +138,11 @@ def creacionQR():
         if args.imagen:
             imagenQR=args.imagen
         else:
-            name = request.form['txtname']
-            imagenQR = os.path.dirname(os.path.abspath(__file__)) + '\\' + name + '.png' #"C:\Program Files\Downloand" os.path.abspath(__file__)
+            name = input("Ingrese el nombre con el que quiera guardar la imagen: ")
+            if name == "":
+                imagenQR = os.path.dirname(os.path.abspath(__file__)) + '\ ' + "qr" + '.png'
+            else:
+                imagenQR = os.path.dirname(os.path.abspath(__file__)) + '\ ' + name + '.png' #"C:\Program Files\Downloand" os.path.abspath(__file__)
 
         #Aplicamos el valor al objeto QR
         qr.add_data(valorQR)
