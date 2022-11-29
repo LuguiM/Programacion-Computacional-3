@@ -9,10 +9,28 @@
             <h1>Generador</h1>
             <p>Escriba una url o texto para generar código QR</p>
         </div>
+      <form>
         <div class="input-form">
-            <input type="text" class="qr-input" placeholder="Ingrese URL o texto" />
+            <input type="text" class="qr-input" required placeholder="Ingrese URL o texto" />
+            <input type="text" id="txtname" name="txtname" required placeholder="Nombre del qr">
+            <select name="tipoQr">
+
+              <option value="CIRCULO">CIRCULO</option>
+        
+              <option value="CUADRADO">CUADRADO</option>
+        
+              <option value="BARRA_VERTICAL">BARRA_VERTICAL</option>
+        
+              <option value="BARRA_HORIZONTAL">BARRA_HORIZONTAL</option>
+        
+              <option value="REDONDEADO">REDONDEADO</option>
+  
+              <option value="CUADRADO_GRANDE">CUADRADO_GRANDE</option>
+        
+            </select>
             <button class="generate-btn">Genera tu codigo QR</button>
         </div>
+      </form>
         <div class="qr-code">
             <img src="images/qrcode.png" class="qr-image" />
         </div>
