@@ -33,31 +33,32 @@ def shows():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    msg = ''
     
     notificacion = Notify()
-    
-    if request.method == 'POST':
+
+    if request.method == 'POST' and "usuario" in request.form and "passwordd" in request.form:
         usuario = request.form['usuario']
         pasword = request.form['passwordd']
         
-        cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM login_tradicional WHERE usuario=%s", (usuario,))
-        user = cur.fetchone()
-        cur.close()
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM login_tradicional WHERE usuario = %s AND contrasena = %s', (usuario, pasword,))
+        account = cursor.fetchone()
         
-        if len(user)>0:
-            if pasword == user["password"]:
-                session['usuario'] = user['usuario']
-                session['password'] = user['password']
-                
-            else:
-                notificacion.title = "error de Acceso"
-                notificacion.message = "Usuario o Contraseña no Valida"
-                notificacion.send()
-                return render_template("login.html")
+        if account:
+            # Create session data, we can access this data in other routes
+            session['loggedin'] = True
+            session['id_usuario'] = account['id_usuario']
+            session['usuario'] = account['usuario']
+            
+            notificacion.title='Logged in successfully!'
+            notificacion.message="Bienvenido al sistema"
+            notificacion.send()
+            return render_template("index.html")
         else:
-            notificacion.title = "error de Acceso"
-            notificacion.message = "Usuario o Contraseña no Valida"
+            
+            notificacion.title = "Error de Acceso"
+            notificacion.message="Correo o contraseña no valida"
             notificacion.send()
             return render_template("login.html")
     else:
