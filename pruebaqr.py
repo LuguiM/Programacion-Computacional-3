@@ -6,10 +6,11 @@ from qrcode.image.styledpil import StyledPilImage
 from qrcode.image.styles.moduledrawers import CircleModuleDrawer, GappedSquareModuleDrawer, HorizontalBarsDrawer, RoundedModuleDrawer, SquareModuleDrawer, VerticalBarsDrawer
 import argparse
 import os
+from os import path #pip install notify-py
+from notifypy import Notify
 
 
-
-
+#https://github.com/Daniela8426/App_Citas/blob/main/app.py LOGIN
 
 #SERvidor
 app = Flask("my_first_website")
