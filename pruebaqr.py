@@ -41,13 +41,13 @@ def login():
         pasword = request.form['passwordd']
         
         cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM login_tradicional WHERE usuario=%s", (usuario))
+        cur.execute("SELECT * FROM login_tradicional WHERE usuario=%s", (usuario,))
         user = cur.fetchone()
         cur.close()
         
         if len(user)>0:
-            if password == user["password"]:
-                session['name'] = user['name']
+            if pasword == user["password"]:
+                session['usuario'] = user['usuario']
                 session['password'] = user['password']
                 
             else:
@@ -66,7 +66,7 @@ def login():
 @app.route("/registro", methods=["GET", "POST"])
 def registro():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM registro")
+    cur.execute("SELECT * FROM registro_global")
     tipo = cur.fetchall()
     
     cur = mysql.connection.cursor()
@@ -88,8 +88,9 @@ def registro():
         password2 = request.form['password2']
         
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO registro(nombre, apellido, correo) VALUES(%s,%s,%s,%s)", (name, apellido, email))
-        cur.execute("INSERT INTO login_tradicional(usuario, contrasena, password2 VALUES(%s,%s,%s)", (usuario, password, password2))
+        cur.execute("INSERT INTO registro_global(nombre, apellido, correo_electronico) VALUE(%s,%s,%s)", (name, apellido, email))
+        mysql.connection.commit()
+        cur.execute("INSERT INTO login_tradicional(usuario, contrasena, password2) VALUE(%s,%s,%s)", (usuario, password, password2))
         mysql.connection.commit()
         notificacion.title = "Registro Exitoso"
         notificacion.message = "Ya te encuentras registrado en QR_WORLD, for favor inicia sesion y empieza a crear."
