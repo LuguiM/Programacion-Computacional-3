@@ -18,12 +18,14 @@
 			<label for="btn-menu">☰</label>
 		</div>
 			<div class="logo">
-				<h1>QR</h1>
+				<h1>QR_WORLD</h1>
 			</div>
 			<nav class="menu">
-				<a href="#">Inicio</a>
+				<a href="{{ url_for('home') }}">HOME</a>
+				<a href="{{ url_for('profile') }}">PERFIL</a>
 				<a href="#">Nosotros</a>
 				<a href="#">Contacto</a>
+				<a href="{{ url_for('logout') }}">CERRAR SESION</a>
 			</nav>
 		</div>
 	</header>

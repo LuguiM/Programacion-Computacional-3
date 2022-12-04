@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<h2>PAGINA DE PERFIL</h2>
+<div>
+    <p>Los Detalles de tu Cuenta son los Siguientes:</p>
+    <table>
+        <tr>
+            <td>Usuario:</td>
+            <td>{{ account['usuario'] }}</td>
+        </tr>
+        <tr>
+            <td>Contraseña:</td>
+            <td>{{ account['contrasena'] }}</td>
+        </tr>
+        <tr>
+            <td>Correo:</td>
+            <td>{{ account['correo_electronico'] }}</td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

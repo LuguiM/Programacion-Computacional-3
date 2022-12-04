@@ -13,7 +13,7 @@ from notifypy import Notify
 #https://github.com/Daniela8426/App_Citas/blob/main/app.py LOGIN
 
 #SERvidor
-app = Flask("my_first_website")
+app = Flask("QrWorld")
 
 #CONEXION BASE DE DATOS
 app.config['MYSQL_HOST'] = '127.0.0.1'
@@ -24,14 +24,14 @@ app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 mysql = MySQL(app)
 
 @app.route("/", methods=["GET", "POST"])
-def show_signup_form():
+def index():
     return render_template("index.html")
 
-@app.route("/loginFacial")
+@app.route("/QrWorld/loginFacial")
 def shows():
     return render_template("login_facial.html")
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route("/QrWorld/login", methods=["GET", "POST"])
 def login():
     msg = ''
     
@@ -54,18 +54,56 @@ def login():
             notificacion.title='Logged in successfully!'
             notificacion.message="Bienvenido al sistema"
             notificacion.send()
-            return render_template("index.html")
+            return render_template('home')
         else:
-            
+            msg = 'Usuario o Contraseña Incorrectas!'
             notificacion.title = "Error de Acceso"
             notificacion.message="Correo o contraseña no valida"
             notificacion.send()
-            return render_template("login.html")
+            #return render_template("login.html")
     else:
-        return render_template("login.html")
+        return render_template("login.html",msg=msg)
 
-@app.route("/registro", methods=["GET", "POST"])
+@app.route('/QrWorld/logout')
+def logout():
+   session.pop('loggedin', None)
+   session.pop('id_usuario', None)
+   session.pop('usuario', None)
+   return redirect(url_for('login'))
+
+@app.route("/QrWorld/registro", methods=["GET", "POST"])
 def registro():
+    
+    msg = ''
+    
+    if request.mehtod == 'POST' and 'name' in request.form and 'email' in request.form and 'usuario' in request.form and 'password' in request.form:
+        name = request.form['name']
+        email = request.form['email']
+        usuario = request.form['usuario']
+        password = request.form['password']
+        
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DisctCursor)
+        cursor.execute('SELECT * FROM login_tradicional WHERE usuario = %s',(usuario,))
+        account = cursor.fetchone()
+        
+        if account:
+            msg = 'El Usuario Ya Existe!'
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+',email):
+            msg = 'Dirrecion de Correo Invalida!'
+        elif not re.match(r'[A-Za-z0-9]+', usuario):
+            msg = 'El Usuario solo debe contener Caracteres y Numeros!'
+        elif not usuario or not password or not email:
+            msg = 'Rellene el formulario'
+        else:
+            cursor.execute("INSERT INTO login_tradicional(nombre, correo_electronico, usuario, contrasena) VALUES (%s, %s, %s,%s)",(name,email,usuario,password,))
+            mysql.connection.commit()
+            msg = 'Te Has Registrado Correctamente!'
+            
+    elif request.method == 'POST':
+        msg = 'Por favor llena todos los campos!'
+    return render_template('registro.html', msg=msg)
+    
+    #PRIMER CODIGO DE REGISRO
     cur = mysql.connection.cursor()
     cur.execute("SELECT * FROM registro_global")
     tipo = cur.fetchall()
@@ -98,13 +136,28 @@ def registro():
         notificacion.send()
         return redirect(url_for('login'))
     
+@app.route('/QrWorld/home')
+def home():
+    if 'loggedin' in session:
+        return render_template('home.html',username=session['usuario'])
     
+    return redirect(url_for('login'))
 
-@app.route("/generador", methods=["GET", "POST"])
+@app.route('/QrWorld/profile')
+def profile():
+   
+    if 'loggedin' in session:
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM login_tradicional WHERE id_usuario = %s', (session['id_usuario'],))
+        account = cursor.fetchone()
+        return render_template('profile.html', account=account)
+    return redirect(url_for('login'))
+
+@app.route("/QrWorld/generador", methods=["GET", "POST"])
 def generador():
     return render_template("ppp.html")
 
-@app.route("/creacionQR", methods=['GET','POST'])
+@app.route("/QrWorld/creacionQR", methods=['GET','POST'])
 def creacionQR():
     if request.method == "POST":
         qr = qrcode.QRCode(
