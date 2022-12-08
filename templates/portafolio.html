@@ -1,74 +1,67 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/portafolio.css')}}">
-</head>
-<body>
-    <!-- MENU ENCABEZADO -->
-    <div class="contenedor-header">
-        <header>
-            <div class="logo">
-                <a href="#">Sobre nosotros</a>
-            </div>
-            <nav id="nav">
-                <ul>
-                    <li><a href="#portfolio" onclick="seleccionar()">GRUPO_4</a></li>  
-                </ul>
-            </nav>
-            <div class="nav-responsive" onclick="mostrarOcultarMenu()">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-        </header>
-    </div>
+{% extends 'base.html' %}
+{%block title %}PORTAFOLIO{%endblock%}
 
-    
+{%block content%}
+<link rel="stylesheet" href="{{url_for('static', filename='css/portafolio.css')}}">
+<!-- MENU ENCABEZADO 
 
 
-    <!-- SECCION PORTFOLIO -->
-    <section id="portfolio" class="portfolio">
-        <div class="contenido-seccion">
-            <h2>PORTAFOLIO</h2>
-            <div class="galeria">
-                <div class="proyecto">
-                    <img src={{url_for('static', filename='portafolio/P1.png')}} alt=""> 
-                    <div class="overlay">
-                        <h3>Carlos Humberto Chavarría</h3>
-                        <p>USIS075419</p>
-                    </div>
-                </div>
-                <div class="proyecto">
-                    <img src={{url_for('static', filename='portafolio/P2.png')}} alt="">
-                    <div class="overlay">
-                        <h3>Diseño Creativo</h3>
-                        <p>Fotografía</p>
-                    </div>
-                </div>
-                <div class="proyecto">
-                    <img src={{url_for('static', filename='portafolio/P3.png')}} alt="">
-                    <div class="overlay">
-                        <h3>Diseño Creativo</h3>
-                        <p>Fotografía</p>
-                    </div>
-                </div>
-                <div class="proyecto">
-                    <img src={{url_for('static', filename='portafolio/P4.png')}} alt="">
-                    <div class="overlay">
-                        <h3>Diseño Creativo</h3>
-                        <p>Fotografía</p>
-                    </div>
-                </div>
-
-            </div>
+<div class="contenedor-header">
+    <header>
+        <div class="logo">
+            <a href="#">Sobre nosotros</a>
         </div>
-    </section>
+        <nav id="nav">
+            <ul>
+                <li><a href="#portfolio" onclick="seleccionar()">GRUPO_4</a></li>  
+            </ul>
+        </nav>
+        <div class="nav-responsive" onclick="mostrarOcultarMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+</div>
+-->
 
-   
+<!-- SECCION PORTFOLIO -->
+<section id="portfolio" class="portfolio">
+    <div class="contenido-seccion">
+        <h2>PORTAFOLIO</h2>
+        <div class="galeria">
+            <div class="proyecto">
+                <img src={{url_for('static', filename='portafolio/P1.png')}} alt=""> 
+                <div class="overlay">
+                    <h3>Carlos Humberto Chavarría</h3>
+                    <p>USIS075419</p>
+                </div>
+            </div>
+            <div class="proyecto">
+                <img src={{url_for('static', filename='portafolio/P2.png')}} alt="">
+                <div class="overlay">
+                    <h3>Diseño Creativo</h3>
+                    <p>Fotografía</p>
+                </div>
+            </div>
+            <div class="proyecto">
+                <img src={{url_for('static', filename='portafolio/P3.png')}} alt="">
+                <div class="overlay">
+                    <h3>Diseño Creativo</h3>
+                    <p>Fotografía</p>
+                </div>
+            </div>
+            <div class="proyecto">
+                <img src={{url_for('static', filename='portafolio/P4.png')}} alt="">
+                <div class="overlay">
+                    <h3>Diseño Creativo</h3>
+                    <p>Fotografía</p>
+                </div>
+            </div>
 
-    <script src={{url_for('static', filename='js/portafolio.js')}}></script>
-</body>
-</html>
+        </div>
+    </div>
+</section>
+
+
+
+<script src={{url_for('static', filename='js/portafolio.js')}}></script>
+{%endblock%}

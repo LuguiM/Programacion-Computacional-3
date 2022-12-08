@@ -8,17 +8,13 @@
 <body>
     <div class="center">
         <h1>CREAR UNA CUENTA</h1>
-        <form method="post" action="/registro" >
+        <form method="post" action="/QrWorld/registro" >
             <div class="txt_field">
                 <input type="text" name="name" required>
                 <span></span>
                 <label>Nombre</label>
             </div>
-            <div class="txt_field">
-                <input type="text" name="apellido" required>
-                <span></span>
-                <label>Apellido</label>
-            </div>
+            
             <div class="txt_field">
                 <input type="text" name="email" required>
                 <span></span>
@@ -34,11 +30,7 @@
                 <span></span>
                 <label>Contraseña</label>
             </div>
-            <div class="txt_field">
-                <input type="password" name="password2" required>
-                <span></span>
-                <label>Repita la Contraseña</label>
-            </div>
+            
             <div class="msg">{{ msg }}</div>
             <input type="submit" name="crear" value="CREAR"></input>
             <div class="registro_link">

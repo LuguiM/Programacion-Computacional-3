@@ -8,7 +8,7 @@
 <body>
     <div class="center">
         <h1>INICIO DE SESION</h1>
-        <form method="post" action="/login">
+        <form method="post" action="/QrWorld/login">
             <div class="txt_field">
                 <input type="text" name="usuario" required>
                 <span></span>
@@ -23,7 +23,7 @@
             <div class="msg">{{ msg }}</div>
             <input type="submit"  name="iniciar" value="INICIAR">
             <div class="registro_link">
-                ¿Sin cuenta? UNETE! <a href="registro.html">Crear Cuenta</a>
+                ¿Sin cuenta? UNETE! <a href="{{url_for('login')}}">Crear Cuenta</a>
             </div>
         </form>
     </div>

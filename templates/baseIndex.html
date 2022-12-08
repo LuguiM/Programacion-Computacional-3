@@ -25,7 +25,7 @@
 				<a href="{{ url_for('profile') }}">PERFIL</a>
 				<a href="#">NOSOTROS</a>
 				<a href="#">CONTACTO</a>
-				<a href="{{ url_for('logout') }}">CERRAR SESION</a>
+				<a href="{{ url_for('logout') }}">INICIAR SESION</a>
 			</nav>
 		</div>
 	</header>
@@ -38,8 +38,8 @@
 		<nav>
 			
 			<a href="">Servicios</a>
-			
-			<a href="">HistorialQR</a>
+			<a href="{{url_for('registro')}}">HistorialQR</a>
+			<a href="{{url_for('login')}}">ingresar</a>
 			<a href="{{url_for('generador')}}">usar</a>
 		    
 		</nav>

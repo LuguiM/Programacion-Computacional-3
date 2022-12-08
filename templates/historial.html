@@ -1,3 +1,58 @@
+{% extends 'base.html' %}
+{%block title %} HistorialQR {%endblock%}
+
+{%block content%}
+<link rel="stylesheet" href="{{url_for('static', filename='css/historial.css')}}">
+
+<div class="container__background-triangle">
+    <div class="triangle triangle1"></div>
+    <div class="triangle triangle2"></div>
+    <div class="triangle triangle3"></div>
+    
+</div>
+<H1>HISTORIAL DE QR</H1>
+<div class="container__cards">
+    
+    <div class="card">
+        <h2>Fecha de creacion</h2>
+        <div class="cover__card">
+            <img src="{{url_for('static', filename='images/3b4659b3e0069b7abee4e7c3cd26ac33.jpg')}}" alt="">
+            
+        </div>
+        
+        <div class="cover__card">
+            <img src="{{url_for('static', filename='images/45e3f33624bd4214a16048b77d4b1881.jpg')}}" alt="">
+        </div>
+       
+    </div>
+    <div class="card">
+        <h2>Nombre</h2>
+        <div class="cover__card">
+            <img src="{{url_for('static', filename='images/45e3f33624bd4214a16048b77d4b1881.png')}}" alt="">
+            
+        </div>
+        
+        <div class="cover__card">
+            <img src="{{url_for('static', filename='images/3b4659b3e0069b7abee4e7c3cd26ac33.jpg')}}" alt="">
+        </div>
+       
+    </div>
+    <div class="card">
+        <h2>Imagen QR</h2>
+        <div class="cover__card">
+            <img src="{{url_for('static', filename='images/45e3f33624bd4214a16048b77d4b1881.jpg')}}" alt="">
+            
+        </div>
+        
+        <div class="cover__card">
+            <img src="{{url_for('static', filename='images/45e3f33624bd4214a16048b77d4b1881.png')}}" alt="">
+        </div>
+    </div>
+    
+    
+</div>
+{%endblock%}
+<!-- SECCION DESFUNCIONAL 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,3 +114,4 @@
     
 </body>
 </html>
+-->
