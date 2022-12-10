@@ -1,7 +1,7 @@
 from flask import Flask,render_template, request, redirect, url_for, session
 from flask_mysqldb import MySQL, MySQLdb
 import re
-
+import controlador
 import qrcode
 from qrcode.image.styledpil import StyledPilImage
 from qrcode.image.styles.moduledrawers import CircleModuleDrawer, GappedSquareModuleDrawer, HorizontalBarsDrawer, RoundedModuleDrawer, SquareModuleDrawer, VerticalBarsDrawer
@@ -10,6 +10,7 @@ import os
 from os import path #pip install notify-py
 from notifypy import Notify
 
+crud = controlador.crud()
 
 #https://github.com/Daniela8426/App_Citas/blob/main/app.py LOGIN
 
@@ -80,7 +81,7 @@ def registro():
     if request.method == 'POST' and 'name' in request.form and 'email' in request.form and 'usuario' in request.form and 'password' in request.form:
         name = request.form['name']
         email = request.form['email']
-        usuario = request.form['usuario']
+        usuario = request.form.get['usuario']
         password = request.form['password']
         
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -105,7 +106,7 @@ def registro():
         msg = 'Por favor llena todos los campos!'
     return render_template('registro.html', msg=msg)
     
-    #PRIMER CODIGO DE REGISRO
+
     
     
 @app.route('/QrWorld/home')
@@ -129,8 +130,19 @@ def profile():
 def generador():
     return render_template("ppp.html")
 
+@app.route("/QrWorld/historial")
+def historial():
+    qr = crud.obtener_qr()
+    return render_template("hsitorial_prueba.html", qr=qr)
+
+@app.route("/eliminar_qr", methods=["POST"])
+def eliminar_qr():
+    crud.eliminar_qr(request.form["id"])
+    return redirect("/qrWorld/historial")
+
 @app.route("/QrWorld/creacionQR", methods=['GET','POST'])
 def creacionQR():
+    msg = ''
     if request.method == "POST":
         qr = qrcode.QRCode(
         version=1,
@@ -166,7 +178,7 @@ def creacionQR():
         if args.imagen:
             imagenQR=args.imagen
         else:
-            name = input("Ingrese el nombre con el que quiera guardar la imagen: ")
+            name = request.form['txtname']
             if name == "":
                 imagenQR = os.path.dirname(os.path.abspath(__file__)) + '\ ' + "qr" + '.png'
             else:
@@ -194,9 +206,17 @@ def creacionQR():
         f = open(imagenQR, "wb")
         img.save(f)
         
-        return render_template("ppp.html")
+        crud.insertar_qr(name,valorQR,tipoQR,imagenQR)
+        msg = "se han podido insertar los datos"
+        return render_template("prueba.html",msg=msg)
+    
     else:
-        return render_template("ppp.html")
+        msg = "No se han podido insertar los datos"
+        return render_template("prueba.html",msg=msg)
+    
+    
+   
+
 
 
 if __name__ == "__main__":

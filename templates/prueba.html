@@ -4,7 +4,7 @@
     <form action="{{url_for('creacionQR')}}" method="post" name="#qr" >
 
         <input type="text" id="txtdato" name="txtdato" required placeholder="Tipo de dato">
-        <input type="text" id="txtname" name="txtname" required placeholder="Nombre del qr">
+       
         <select name="tipoQr">
 
             <option value="CIRCULO">CIRCULO</option>
@@ -20,11 +20,16 @@
             <option value="CUADRADO_GRANDE">CUADRADO_GRANDE</option>
       
           </select>
-        <input type="submit" class="btn btn-primay btn-block btn-large" value="Crear QR">
+          <input type="text" id="txtname" name="txtname" id="txtname" placeholder="Nombre del qr" >
+          <p>{{msg}}</p>
+        <input type="submit" class="b" name="crear" id="crear" value="Crear QR">
+        
     <br>
-    <p>{{prediccion_texto}}</p>
+    
     <br>
     
     </form>
-    
+
+   
+  </script>
    {%endblock%}

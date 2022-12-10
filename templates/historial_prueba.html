@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block titulo %} HISTORIAL {% endblock %}
+{% block contenido %}
+
+<section class="section">
+    <div class="columns">
+        <div class="column">
+            <h3 class="is-size-3">QR</h3>
+            <a href="{{url_for('creacionQR')}}" class="button is-success">Agregar</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>TIPO</th>
+                        <th>IMAGEN</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for historial in historial %}
+                    <tr>
+                        <td>{{historial[1]}}</td>
+                        <td>{{historial[2]}}</td>
+                        <td>{{historial[3]}}</td>
+                        <td>{{historial[4]}}</td>
+                        
+                        <td>
+                            <form action="{{url_for('eliminar_qr')}}" method="POST">
+                                <input type="hidden" name="id" value="{{historial[0]}}">
+                                <button class="button is-danger">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}
