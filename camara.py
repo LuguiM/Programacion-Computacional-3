@@ -114,12 +114,8 @@ def login_capture():
     faces = MTCNN().detect_faces(pixels)
 
     
-    if face(img, faces) == True:
-        msg = "INGRESO CORRECTO"
-        return render_template("camara.html",msg=msg)
-    else:
-        return render_template("camara.html")
-    #getEnter(screen2)
+    face(img, faces) 
+
 
     res_db = db.getUser(user_login, img_user)
     if(res_db["affected"]):
