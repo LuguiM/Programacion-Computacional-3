@@ -117,7 +117,7 @@ def login_capture():
     face(img, faces) 
 
 
-    res_db = db.getUser(user_login, img_user)
+    res_db = db.getlogin(user_login, img_user)
     if(res_db["affected"]):
         my_files = os.listdir()
         if img_user in my_files:
@@ -129,9 +129,11 @@ def login_capture():
             if comp >= 0.94:
                 print("{}Compatibilidad del {:.1%}{}".format(color_success, float(comp), color_normal))
                 print(f"Bienvenido, {user_login}", 1)
+                return render_template("camara.html")
             else:
                 print("{}Compatibilidad del {:.1%}{}".format(color_error, float(comp), color_normal))
                 print("¡Error! Incopatibilidad de datos", 0)
+                return render_template("camara.html")
             os.remove(img_user)
     
         else:

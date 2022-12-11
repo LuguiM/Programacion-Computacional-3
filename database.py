@@ -51,7 +51,7 @@ def getlogin(usuario, path):
     rows = 0
 
     try:
-        con = db.connect(host=keys["host"], login_facial=keys["login_facial"], password=keys["password"], database=keys["database"])
+        con = db.connect(host=keys["host"], user=keys["user"], password=keys["password"], database=keys["database"])
         cursor = con.cursor()
         sql = "SELECT * FROM `login_facial` WHERE usuario = %s"
 
