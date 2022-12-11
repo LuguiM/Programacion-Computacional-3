@@ -34,11 +34,11 @@ def register_face_db(img):
     res_bd = db.registerUser(name_user, img)
 
     #getEnter(screen1)#
-    if(res_bd["affected"]):
-        print("¡Éxito! Se ha registrado correctamente", 1)
+    if(res_bd["affected"]== True):
+        #print("¡Éxito! Se ha registrado correctamente", 1)#
         return render_template("camara.html")
     else:
-        print("¡Error! No se ha registrado correctamente", 0)
+        #print("¡Error! No se ha registrado correctamente", 0)#
         return render_template("camara.html")
     os.remove(img)
     
