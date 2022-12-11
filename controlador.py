@@ -1,12 +1,34 @@
 from db import obtener_conexion
 class crud:
    
+   def convertToBinaryData(filename):
+    
+        try:
+            with open(filename, 'rb') as file:
+                binaryData = file.read()
+            return binaryData
+        except:
+            return 0
+    
+
+    def write_file(data, path):
+    
+        with open(path, 'wb') as file:
+            file.write(data)
+    
     
     def insertar_qr(nombre,contenido,tipo,img):
         conexion = obtener_conexion()
         with conexion.cursor() as cursor:
             cursor.execute("INSERT INTO historial(nombre,contenido,tipo,img) VALUES (%s, %s, %s, %s)", (nombre,contenido,tipo,img))
-        conexion.commit()
+            pic = convertToBinaryData(img)
+            
+            if pic:
+                conexion.commit()
+                inserted = cursor.rowcount
+                id = cursor.lastrowid
+            else:
+                print("Fallo al insertar la imagen")
         conexion.close()
     
     def obtener_qr():
