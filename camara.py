@@ -33,7 +33,7 @@ def register_face_db(img):
     name_user = img.replace(".jpg","").replace(".png","")
     res_bd = db.registerUser(name_user, img)
 
-    getEnter(screen1)
+    #getEnter(screen1)#
     if(res_bd["affected"]):
         print("¡Éxito! Se ha registrado correctamente", 1)
     else:

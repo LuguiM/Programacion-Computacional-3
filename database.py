@@ -27,7 +27,7 @@ def registerUser(usuario, cimagen):
 
 
     try:
-        con = db.connect(host=keys["host"], login_facial=keys["login_facial"], password=keys["password"], database=keys["database"])
+        con = db.connect(host=keys["host"], user=keys["user"], password=keys["password"], database=keys["database"])
         cursor = con.cursor()
         sql = "INSERT INTO `login_facial`(usuario, cimagen) VALUES (%s,%s)"
         pic = convertToBinaryData(cimagen)
