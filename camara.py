@@ -65,7 +65,11 @@ def register_capture():
     pixels = plt.imread(img)
     faces = MTCNN().detect_faces(pixels)
     face(img, faces)
-    register_face_db(img)
+    if register_face_db(img) == True:
+        return render_template("camara.html")
+    else:
+        return render_template("camara.html")
+    
 
 
 
