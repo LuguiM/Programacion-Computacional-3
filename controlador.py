@@ -1,10 +1,6 @@
-import pymysql
+from db import obtener_conexion
 class crud:
-    def obtener_conexion():
-        return pymysql.connect(host='127.0.0.1',
-                           user='root',
-                           password='',
-                           db='qr_world')
+   
     
     def insertar_qr(nombre,contenido,tipo,img):
         conexion = obtener_conexion()

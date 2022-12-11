@@ -1,4 +1,4 @@
-from flask import Flask,render_template, request, redirect, url_for, session
+from flask import Flask,render_template, request, redirect, url_for, flash,session
 from flask_mysqldb import MySQL, MySQLdb
 import re
 import controlador
@@ -10,7 +10,7 @@ import os
 from os import path #pip install notify-py
 from notifypy import Notify
 
-crud = controlador.crud()
+
 
 #https://github.com/Daniela8426/App_Citas/blob/main/app.py LOGIN
 
@@ -24,6 +24,10 @@ app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'qr_world'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 mysql = MySQL(app)
+
+
+
+
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -132,7 +136,7 @@ def generador():
 
 @app.route("/QrWorld/historial")
 def historial():
-    qr = crud.obtener_qr()
+    qr = controlador.crud.obtener_qr()
     return render_template("hsitorial_prueba.html", qr=qr)
 
 @app.route("/eliminar_qr", methods=["POST"])
@@ -206,13 +210,16 @@ def creacionQR():
         f = open(imagenQR, "wb")
         img.save(f)
         
-        crud.insertar_qr(name,valorQR,tipoQR,imagenQR)
+        controlador.crud.insertar_qr(name, valorQR, tipoQR, imagenQR)
+        #cur = mysql.connection.cursor()
+        #cur.execute("INSERT INTO historial(nombre,contenido,tipo,img) VALUES (%s,%s,%s,%s)", (name,valorQR,tipoQR,imagenQR))
+        #cur.connection.commit()
         msg = "se han podido insertar los datos"
+        #flash('Qr agregado')
         return render_template("prueba.html",msg=msg)
-    
     else:
-        msg = "No se han podido insertar los datos"
         return render_template("prueba.html",msg=msg)
+        
     
     
    
