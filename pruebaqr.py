@@ -27,9 +27,6 @@ app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 mysql = MySQL(app)
 
 
-
-
-
 @app.route("/", methods=["GET", "POST"])
 def index():
     return render_template("historial.html")
