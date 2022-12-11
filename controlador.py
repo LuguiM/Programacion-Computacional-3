@@ -13,7 +13,7 @@ class crud:
         conexion = obtener_conexion()
         qr = []
         with conexion.cursor() as cursor:
-            cursor.execute("SELECT * FROM historial")
+            cursor.execute("SELECT nombre,contenido,tipo,img FROM historial")
             qr = cursor.fetchall()
         conexion.close()
         return qr
@@ -21,7 +21,7 @@ class crud:
     def eliminar_qr(id):
         conexion = obtener_conexion()
         with conexion.cursor() as cursor:
-            cursor.execute("DELETE FROM historial WHERE id= %s",(id,))
+            cursor.execute("DELETE FROM historial WHERE id_historial= %s",(id,))
         conexion.commit()
         conexion.close()
     

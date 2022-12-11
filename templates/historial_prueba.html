@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block titulo %} HISTORIAL {% endblock %}
-{% block contenido %}
+{% block title %} HISTORIAL {% endblock %}
+{% block content %}
 
 <section class="section">
     <div class="columns">
@@ -18,16 +18,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for historial in historial %}
+                    {% for qrs in qr %}
                     <tr>
-                        <td>{{historial[1]}}</td>
-                        <td>{{historial[2]}}</td>
-                        <td>{{historial[3]}}</td>
-                        <td>{{historial[4]}}</td>
+                        <td>{{qrs[1]}}</td>
+                        <td>{{qrs[2]}}</td>
+                        <td>{{qrs[3]}}</td>
+                        <td>{{qrs[4]}}</td>
                         
                         <td>
                             <form action="{{url_for('eliminar_qr')}}" method="POST">
-                                <input type="hidden" name="id" value="{{historial[0]}}">
+                                <input type="hidden" name="id" value="{{qrs[0]}}">
                                 <button class="button is-danger">Eliminar</button>
                             </form>
                         </td>
