@@ -146,6 +146,7 @@ def eliminar_qr():
 def creacionQR():
     msg = ''
     if request.method == "POST":
+        
         qr = qrcode.QRCode(
         version=1,
         error_correction=qrcode.constants.ERROR_CORRECT_L,
@@ -227,9 +228,9 @@ def creacionQR():
         #cur.connection.commit()
         msg = "se han podido insertar los datos"
         #flash('Qr agregado')
-        return render_template("prueba.html",msg=msg)
+        return render_template("ppp.html",msg=msg)
     else:
-        return render_template("prueba.html",msg=msg)
+        return render_template("ppp.html",msg=msg)
         
     
     

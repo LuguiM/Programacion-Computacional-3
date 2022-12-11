@@ -9,10 +9,10 @@
             <h1>Generador</h1>
             <p>Escriba una url o texto para generar código QR</p>
         </div>
-      <form>
+      <form action="{{url_for('creacionQR')}}" method="post" name="#qr">
         <div class="input-form">
-            <input type="text" class="qr-input" required placeholder="Ingrese URL o texto" />
-            <input type="text" id="txtname" name="txtname" placeholder="Nombre del qr">
+            <input type="text" id="txtdato"  name="txtdato" required placeholder="Ingrese URL o texto" />
+            <input type="text" id="txtname" name="txtname"  placeholder="Nombre del qr">
             <select name="tipoQr">
 
               <option value="CIRCULO">CIRCULO</option>
@@ -28,6 +28,7 @@
               <option value="CUADRADO_GRANDE">CUADRADO_GRANDE</option>
         
             </select>
+            <p>{{msg}}</p>
             <button class="generate-btn">Genera tu codigo QR</button>
         </div>
       </form>
@@ -41,10 +42,11 @@
     </div>
 </div>
   <script>
+    /*
     const container = document.querySelector(".container");
     const generateBtn = document.querySelector(".generate-btn");
     const downloadBtn = document.querySelector(".download-btn");
-    const qrInput = document.querySelector(".qr-input");
+    const qrInput = document.querySelector("txtdato");
     const qrImg = document.querySelector(".qr-image");
     let downloadResource = {
       url: "",
@@ -82,6 +84,7 @@
       el.click();
       el.remove();
     };
+    */
   </script>
 
 {%endblock%}

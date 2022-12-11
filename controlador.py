@@ -11,10 +11,9 @@ class crud:
             return 0
     
 
-    def write_file(data, path):
-    
-        with open(path, 'wb') as file:
-            file.write(data)
+def write_file(data, path):
+    with open(path, 'wb') as file:
+        file.write(data)
     
     
     def insertar_qr(nombre,contenido,tipo,img):
