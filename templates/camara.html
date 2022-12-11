@@ -63,7 +63,12 @@
         </div>
         <div class="columns">
             <div class="column has-text-centered">
-                <a href="./tomar_foto_descargar" target="_blank" class="button is-success mb-2">Tomar y descargar</a>
+                <form method="post" action="/tomar_foto_descargar">
+                    <p>{{msg}}</p>
+                    <input type="text" name="login"placeholder="USUARIOLOGIN" >
+                    <button id="login" class="button is-info mb-2">LOGIN</button>
+                </form>
+                <a href="./tomar_foto_guardar" target="_blank" class="button is-success mb-2">Tomar y descargar</a>
                 <form method="post" action="/tomar_foto_guardar">
                     <input type="text" name="usuario"placeholder="USUARIo" >
                     <button id="btnTomarFotoServidor" class="button is-info mb-2">Tomar y guardar en servidor</button>
@@ -73,25 +78,7 @@
                 <a class="button is-danger my-2" href="//parzibyte.me/blog">Ver código fuente</a>
             </div>
         </div>
-        <script type="text/javascript">
-            /*
-                En el clic del botón hacemos una petición a ./tomar_foto_guardar 
-            */
-            const $btnTomarFotoServidor = document.querySelector("#btnTomarFotoServidor"),
-                $estado = document.querySelector("#estado");
-            $btnTomarFotoServidor.onclick = async () => {
-                $estado.textContent = "Tomando foto...";
-                const respuestaRaw = await fetch("./tomar_foto_guardar");
-                const respuesta = await respuestaRaw.json();
-                let mensaje = "";
-                if (respuesta.ok) {
-                    mensaje = `Foto  y usuario guardada como ${respuesta.user_reg_img}, la base de datos`;
-                } else {
-                    mensaje = `Error tomando foto`;
-                }
-                $estado.textContent = mensaje;
-            };
-        </script>
+        
     </section>
 </body>
 
