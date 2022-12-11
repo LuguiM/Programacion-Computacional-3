@@ -216,14 +216,12 @@ def creacionQR():
             img = fin.read()
             fin.close()
         except  IOError:
-            print ("Error %d: %s" % (e.args[0],e.args[1]))
-            system(1)
+            print ("Error" )
         
         try:
             controlador.crud.insertar_qr(name, valorQR, tipoQR, img)
-        except mdb.Error: #genera excepcion en caso de error
-            print ("Error %d: %s" % (e.args[0],e.args[1]))
-            system(1)
+        except IOError: #genera excepcion en caso de error
+            print ("Error2")
             
         
         
