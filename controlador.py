@@ -12,11 +12,12 @@ class crud:
     
 
 def write_file(data, path):
-    with open(path, 'wb') as file:
-        file.write(data)
+    
+        with open(path, 'wb') as file:
+            file.write(data)
     
     
-    def insertar_qr(nombre,contenido,tipo,img):
+def insertar_qr(nombre,contenido,tipo,img):
         conexion = obtener_conexion()
         with conexion.cursor() as cursor:
             cursor.execute("INSERT INTO historial(nombre,contenido,tipo,img) VALUES (%s, %s, %s, %s)", (nombre,contenido,tipo,img))
@@ -30,7 +31,7 @@ def write_file(data, path):
                 print("Fallo al insertar la imagen")
         conexion.close()
     
-    def obtener_qr():
+def obtener_qr():
         conexion = obtener_conexion()
         qr = []
         with conexion.cursor() as cursor:
@@ -39,14 +40,14 @@ def write_file(data, path):
         conexion.close()
         return qr
 
-    def eliminar_qr(id):
+def eliminar_qr(id):
         conexion = obtener_conexion()
         with conexion.cursor() as cursor:
             cursor.execute("DELETE FROM historial WHERE id_historial= %s",(id,))
         conexion.commit()
         conexion.close()
     
-    def obtener_qr_por_id(id):
+def obtener_qr_por_id(id):
         conexion = obtener_conexion()
         qr = None
         with conexion.cursor() as cursor:
@@ -55,7 +56,7 @@ def write_file(data, path):
         conexion.close()
         return qr
 
-    def actualizar_qr(nombre, id):
+def actualizar_qr(nombre, id):
         conexion = obtener_conexion()
         with conexion.cursor() as cursor:
             cursor.execute("UPDATE historial SET nombre=%s, WHERE id_historial=%s",(nombre,id))
