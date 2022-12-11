@@ -9,6 +9,7 @@ import argparse
 import os
 from os import path #pip install notify-py
 from notifypy import Notify
+import sys
 
 
 
@@ -210,7 +211,22 @@ def creacionQR():
         f = open(imagenQR, "wb")
         img.save(f)
         
-        controlador.crud.insertar_qr(name, valorQR, tipoQR, imagenQR)
+        try:
+            fin = open(imagenQR,"rb")
+            img = fin.read()
+            fin.close()
+        except  IOError:
+            print ("Error %d: %s" % (e.args[0],e.args[1]))
+            system(1)
+        
+        try:
+            controlador.crud.insertar_qr(name, valorQR, tipoQR, img)
+        except mdb.Error: #genera excepcion en caso de error
+            print ("Error %d: %s" % (e.args[0],e.args[1]))
+            system(1)
+            
+        
+        
         #cur = mysql.connection.cursor()
         #cur.execute("INSERT INTO historial(nombre,contenido,tipo,img) VALUES (%s,%s,%s,%s)", (name,valorQR,tipoQR,imagenQR))
         #cur.connection.commit()
