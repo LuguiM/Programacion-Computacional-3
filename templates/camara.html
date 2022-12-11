@@ -64,7 +64,10 @@
         <div class="columns">
             <div class="column has-text-centered">
                 <a href="./tomar_foto_descargar" target="_blank" class="button is-success mb-2">Tomar y descargar</a>
-                <button id="btnTomarFotoServidor" class="button is-info mb-2">Tomar y guardar en servidor</button>
+                <form method="post" action="/tomar_foto_guardar">
+                    <input type="text" name="usuario"placeholder="USUARIo" >
+                    <button id="btnTomarFotoServidor" class="button is-info mb-2">Tomar y guardar en servidor</button>
+                </form>
                 <div class="notification is-primary mt-2" id="estado">Aquí aparecerá la información</div>
                 <br>
                 <a class="button is-danger my-2" href="//parzibyte.me/blog">Ver código fuente</a>
@@ -82,7 +85,7 @@
                 const respuesta = await respuestaRaw.json();
                 let mensaje = "";
                 if (respuesta.ok) {
-                    mensaje = `Foto guardada como ${respuesta.nombre_foto}`;
+                    mensaje = `Foto  y usuario guardada como ${respuesta.user_reg_img}, la base de datos`;
                 } else {
                     mensaje = `Error tomando foto`;
                 }

@@ -1,12 +1,76 @@
 import uuid
+import os
+#import cv2
+from matplotlib import pyplot as plt
+from mtcnn.mtcnn import MTCNN
+import database as db
 
 import cv2
-from flask import Flask, render_template, Response, jsonify
+from flask import Flask, render_template, request, Response, jsonify
 
 app = Flask(__name__)
 
 # Si tienes varias cámaras puedes acceder a ellas en 1, 2, etcétera (en lugar de 0)
 camara = cv2.VideoCapture(0)
+
+color_success = "\033[1;32;40m"
+color_error = "\033[1;31;40m"
+color_normal = "\033[0;37;40m"
+
+def face(img, faces):
+    data = plt.imread(img)
+    for i in range(len(faces)):
+        x1, y1, ancho, alto = faces[i]["box"]
+        x2, y2 = x1 + ancho, y1 + alto
+        plt.subplot(1,len(faces), i + 1)
+        plt.axis("off")
+        face = cv2.resize(data[y1:y2, x1:x2],(150,200), interpolation=cv2.INTER_CUBIC)
+        cv2.imwrite(img, face)
+        plt.imshow(data[y1:y2, x1:x2])
+        
+# REGISTER #
+def register_face_db(img):
+    name_user = img.replace(".jpg","").replace(".png","")
+    res_bd = db.registerUser(name_user, img)
+
+    getEnter(screen1)
+    if(res_bd["affected"]):
+        print("¡Éxito! Se ha registrado correctamente", 1)
+    else:
+        print("¡Error! No se ha registrado correctamente", 0)
+    os.remove(img)
+    
+    
+@app.route("/tomar_foto_guardar", methods=["GET", "POST"])    
+def register_capture():
+    cap = camara
+    user_reg_img = request.form['usuario']
+    img = f"{user_reg_img}.jpg"
+
+    #while True:
+        #ret, frame = cap.read()
+        #cv2.imwrite(img, frame)
+        #cv2.imwrite(user_reg_img, frame)
+        #if cv2.waitKey(1) == 27:
+            #break
+    ret, frame = cap.read()
+    cv2.imwrite(img, frame)
+    cap.release()
+    #cv2.destroyAllWindows()
+
+    #user_entry1.delete(0, END)
+    
+    pixels = plt.imread(img)
+    faces = MTCNN().detect_faces(pixels)
+    face(img, faces)
+    register_face_db(img)
+
+
+
+
+
+
+
 
 
 # Una función generadora para stremear la cámara
@@ -51,7 +115,7 @@ def descargar_foto():
     return respuesta
 
 
-@app.route("/tomar_foto_guardar")
+#@app.route("/tomar_foto_guardar")
 def guardar_foto():
     nombre_foto = str(uuid.uuid4()) + ".jpg"
     ok, frame = camara.read()
