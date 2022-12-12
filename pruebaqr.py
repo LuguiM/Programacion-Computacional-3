@@ -17,7 +17,6 @@ from matplotlib import pyplot as plt
 from mtcnn.mtcnn import MTCNN
 import database as db
 
-#https://github.com/Daniela8426/App_Citas/blob/main/app.py LOGIN
 
 #SERvidor
 app = Flask("QrWorld")
