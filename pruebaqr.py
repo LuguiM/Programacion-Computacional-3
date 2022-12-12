@@ -142,12 +142,12 @@ def generador():
 
 @app.route("/QrWorld/historial")
 def historial():
-    qr = controlador.crud.obtener_qr()
+    qr = controlador.obtener_qr()
     return render_template("historial_prueba.html", qr=qr)
 
 @app.route("/eliminar_qr", methods=["POST"])
 def eliminar_qr():
-    controlador.crud.eliminar_qr(request.form["id"])
+    controlador.eliminar_qr(request.form["id"])
     return redirect("/QrWorld/historial")
 
 @app.route("/QrWorld/creacionQR", methods=['GET','POST'])

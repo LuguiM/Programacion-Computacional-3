@@ -1,0 +1,65 @@
+
+.nav {
+	position: sticky;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 60px;
+	top: 0;
+}
+
+
+
+.nav {
+	background: #42A5F5;
+    background: #42A5F5;
+	
+	
+}
+.nav__title {
+    margin: 0px 30px;
+}
+.nav__item{
+    display: inline-block;
+    margin: 0px 30px;
+}
+
+.hero {
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background: #BBDEFB;
+	
+	
+}
+.hero h1{
+    font-size: 6em;
+    margin: 0 90px;
+    text-align: center;
+}
+
+
+
+.section {
+	max-width: 900px;
+	margin: 60px auto;
+	padding: 90px 30px;
+	background-color: #FFCDD2;
+	text-align: center;
+	
+	
+}
+.section h2 {
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+.section p {
+    line-height: 1.625em;
+    margin: 0 auto;
+    max-width: 480px;
+}
+
+footer {
+	text-align: center;
+}
