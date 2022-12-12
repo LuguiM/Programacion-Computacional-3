@@ -4,19 +4,18 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Capturar Webcam con HTML5 y Javascript">
-    <meta name="author" content="Raúl Prieto Fernández">
-    <title>Capturar Webcam con HTML5 y Javascript</title>
-    <link href="/style_f.css" rel="stylesheet" type="text/css">
+    <title>LOGIN FACIAL</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style_f.css')}}"  >
 </head>
 <body>
 
     <div class="loginbox">
-        <img src="img/unnamed.png" alt="" class="avatar">
+      <img class="avatar" src="/streaming_camara" style="width: auto">
         <h1>Login</h1>
-        <form action="">
+        <form method="post" action="/tomar_foto_login">
           <p>Ususario</p>
           <input type="text" placeholder="Usuario">
+          <p>{{msg}}</p>
           <input type="submit" value="Login">
           <a href="#">Lost your password</a><br>
           <a href="#">Don't have an account?</a>
