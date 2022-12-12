@@ -33,7 +33,7 @@ mysql = MySQL(app)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    return render_template("historial.html")
+    return render_template("home.html")
 
 @app.route("/QrWorld/loginFacial")
 def loginfacial():
