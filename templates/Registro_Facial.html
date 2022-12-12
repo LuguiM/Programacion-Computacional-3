@@ -4,21 +4,21 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>LOGIN FACIAL</title>
+    <title>REGISTRO FACIAL</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/style_f.css')}}"  >
 </head>
 <body>
 
     <div class="loginbox">
       <img class="avatar" src="/streaming_camara" style="width: auto">
-        <h1>INICIO DE SESION FACIAL</h1>
-        <form method="post" action="/tomar_foto_login">
+        <h1>REGISTRO FACIAL</h1>
+        <form method="post" action="/tomar_foto_guardar">
           <p>Ususario</p>
-          <input type="text" name="login" placeholder="Usuario">
+          <input type="text" name="usuario" placeholder="Usuario">
           <p>{{msg}}</p>
-          <input type="submit" value="LOGIN">
-          <a href="{{url_for('login')}}">Prefieres login tradicional? Ingresa</a><br>
-          <a href="{{url_for('Registrofacial')}}">No tienes cuenta?</a>
+          <input type="submit" value="CREAR CUENTA">
+          <a href="{{url_for('registro')}}">Registro tradicional? Ingresa</a><br>
+          <a href="{{url_for('loginfacial')}}">Ya tienes cuenta? Ingresa</a>
         </form>
       </div>
 

@@ -36,8 +36,12 @@ def index():
     return render_template("historial.html")
 
 @app.route("/QrWorld/loginFacial")
-def shows():
+def loginfacial():
     return render_template("login_facial.html")
+
+@app.route("/QrWorld/RegistroFacial")
+def Registrofacial():
+    return render_template("Registro_Facial.html")
 
 @app.route("/QrWorld/login", methods=["GET", "POST"])
 def login():
@@ -213,17 +217,10 @@ def creacionQR():
         f = open(imagenQR, "wb")
         img.save(f)
         
-        try:
-            fin = open(imagenQR,"rb")
-            img = fin.read()
-            fin.close()
-        except  IOError:
-            print ("Error" )
         
-        try:
-            controlador.crud.insertar_qr(name, valorQR, tipoQR, img)
-        except IOError: #genera excepcion en caso de error
-            print ("Error2")
+       
+        controlador.insertar_qr(name, valorQR, tipoQR, img)
+       
             
         
         
@@ -266,10 +263,10 @@ def register_face_db(img):
     #getEnter(screen1)#
     if(res_bd["affected"]== True):
         print("¡Éxito! Se ha registrado correctamente", 1)#
-        return render_template("camara.html")
+        return render_template("Registro_Facial.html")
     else:
         print("¡Error! No se ha registrado correctamente", 0)#
-        return render_template("camara.html")
+        return render_template("Registro_facial.html")
     os.remove(img)
     
     
@@ -287,9 +284,9 @@ def register_capture():
     faces = MTCNN().detect_faces(pixels)
     face(img, faces)
     if register_face_db(img) == True:
-        return render_template("camara.html")
+        return render_template("home.html")
     else:
-        return render_template("camara.html")
+        return render_template("Registro_Facial.html")
     
 
 # LOGIN #
@@ -339,11 +336,11 @@ def login_capture():
             if comp >= 0.94:
                 print("{}Compatibilidad del {:.1%}{}".format(color_success, float(comp), color_normal))
                 print(f"Bienvenido, {user_login}", 1)
-                return render_template("camara.html")
+                return render_template("home.html")
             else:
                 print("{}Compatibilidad del {:.1%}{}".format(color_error, float(comp), color_normal))
                 print("¡Error! Incopatibilidad de datos", 0)
-                return render_template("camara.html")
+                return render_template("login_facial.html")
             os.remove(img_user)
     
         else:

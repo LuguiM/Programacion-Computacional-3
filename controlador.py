@@ -1,7 +1,7 @@
 from db import obtener_conexion
-class crud:
+
    
-   def convertToBinaryData(filename):
+def convertToBinaryData(filename):
     
         try:
             with open(filename, 'rb') as file:
@@ -21,14 +21,11 @@ def insertar_qr(nombre,contenido,tipo,img):
         conexion = obtener_conexion()
         with conexion.cursor() as cursor:
             cursor.execute("INSERT INTO historial(nombre,contenido,tipo,img) VALUES (%s, %s, %s, %s)", (nombre,contenido,tipo,img))
-            pic = convertToBinaryData(img)
+           
             
-            if pic:
-                conexion.commit()
-                inserted = cursor.rowcount
-                id = cursor.lastrowid
-            else:
-                print("Fallo al insertar la imagen")
+            
+        conexion.commit()
+                
         conexion.close()
     
 def obtener_qr():
