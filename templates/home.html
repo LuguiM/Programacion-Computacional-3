@@ -2,7 +2,29 @@
 {%block title %} HOME {%endblock%}
 
 {%block content%}
+<head>
+    <style>
+        .contenedor{
+            
+            color: white;
+            height: 50vh;
+            margin: 5%;
 
-<h1>Pagina Principal</h1>
-<p>Bienvenido, {{usermane}}!</p>
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>PAGINA PRINCIPAL</h1>
+        <p>BIENVENIDO, {{usermane}}!</p>
+    </div>
+</body>
+
 {%endblock%}
