@@ -34,7 +34,7 @@
             <div class="msg">{{ msg }}</div>
             <input type="submit" name="crear" value="CREAR"></input>
             <div class="registro_link">
-                ¿Ya cuentas con una cuenta? <a href="login.html">Inicia Sesion</a>
+                ¿Ya cuentas con una cuenta? <a href="{{url_for('login')}}">Inicia Sesion</a>
             </div>
             <div class="registro_link">
                 ¿Prefieres un Registro Facial?<a href="{{url_for('Registrofacial')}}">Crear Cuenta</a>

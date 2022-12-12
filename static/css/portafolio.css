@@ -13,18 +13,18 @@ html{
 .contenedor-header{
     background: #1e2326;
     position: fixed;
-    width: 100%;
+    width: 90%;
     top: 0;
     left: 0;
     z-index: 99;
 }
 .contenedor-header header{
-    max-width: 1100px;
+    max-width: 1200px;
     margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
+    padding: 15px 15px;
 }
 .contenedor-header header .logo a{
     font-family: 'Righteous';
@@ -471,7 +471,7 @@ html{
     padding: 50px 20px;
 }
 .portfolio .contenido-seccion{
-    max-width: 1100px;
+    max-width: 1200px;
     margin: auto;
 }
 .portfolio h2{
@@ -483,7 +483,7 @@ html{
 .portfolio .galeria{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    /*justify-content: space-around;*/
 }
 .portfolio .galeria .proyecto{
     position: relative;
@@ -493,13 +493,13 @@ html{
     cursor: pointer;
 }
 .portfolio .galeria .proyecto img{
-    width: 100%;
+    width: 90%;
     display: block;
 }
 .portfolio .galeria .proyecto .overlay{
     position: absolute;
     top: 0;
-    width: 100%;
+    width: 90%;
     height: 100%;
     text-align: center;
     background: linear-gradient(rgba(28,182,152,.8), rgba(28,182,152,.8));
@@ -697,13 +697,13 @@ footer .arriba{
 
     .portfolio .galeria{
         display: block;
-        width: 100%;
+        width: 90%;
     }
     .portfolio .galeria .proyecto{
-        max-width: 100%;
+        max-width: 90%;
     }
     .portfolio .galeria .proyecto img{
-        width: 100%;
+        width: 90%;
     }
     .contacto .fila{
         display: block;
