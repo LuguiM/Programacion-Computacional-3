@@ -136,9 +136,9 @@ def profile():
         return render_template('profile.html', account=account)
     return redirect(url_for('login'))
 
-@app.route("/QrWorld/generador", methods=["GET", "POST"])
-def generador():
-    return render_template("ppp.html")
+@app.route("/QrWorld/nosotros", methods=["GET", "POST"])
+def nosotros():
+    return render_template("portafolio.html")
 
 @app.route("/QrWorld/historial")
 def historial():
