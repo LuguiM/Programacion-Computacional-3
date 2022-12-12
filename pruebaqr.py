@@ -229,9 +229,9 @@ def creacionQR():
         #cur.connection.commit()
         msg = "se han podido insertar los datos"
         #flash('Qr agregado')
-        return render_template("ppp.html",msg=msg)
+        return render_template("creacionQR.html",msg=msg)
     else:
-        return render_template("ppp.html",msg=msg)
+        return render_template("creacionQR.html",msg=msg)
         
 #LOGIN Y REGISTRO FACIAL
 
