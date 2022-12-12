@@ -33,7 +33,7 @@ mysql = MySQL(app)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    return render_template("home.html")
+    return render_template("index.html")
 
 @app.route("/QrWorld/loginFacial")
 def loginfacial():
@@ -116,8 +116,12 @@ def registro():
         msg = 'Por favor llena todos los campos!'
     return render_template('registro.html', msg=msg)
     
-
+@app.route('/QrWorld')
+def qrworld():
+    if 'loggedin' in session:
+        return render_template('home.html',username=session['usuario'])
     
+    return redirect(url_for('index'))
     
 @app.route('/QrWorld/home')
 def home():

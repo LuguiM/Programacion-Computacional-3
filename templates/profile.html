@@ -1,12 +1,14 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 
 {% block title %}Profile{% endblock %}
 
 {% block content %}
-<h2>PAGINA DE PERFIL</h2>
-<div>
+<link rel="stylesheet" href="{{url_for('static', filename='css/historial1.css')}}"  >
+<section class="section">
+    <h2>PAGINA DE PERFIL</h2>
+<div class="columns">
     <p>Los Detalles de tu Cuenta son los Siguientes:</p>
-    <table>
+    <table class="styled-table">
         <tr>
             <td>Usuario:</td>
             <td>{{ account['usuario'] }}</td>
@@ -21,4 +23,5 @@
         </tr>
     </table>
 </div>
+</section>
 {% endblock %}
